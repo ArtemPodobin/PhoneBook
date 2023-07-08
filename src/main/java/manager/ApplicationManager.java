@@ -36,7 +36,7 @@ public class ApplicationManager {
 
     //    @BeforeSuite
     public void init(){
-//        wd = new ChromeDriver();
+
         if(browser.equals(BrowserType.CHROME)){
             wd = new EventFiringWebDriver(new ChromeDriver());
             logger.info("Tests start on Chrome");
@@ -53,6 +53,6 @@ public class ApplicationManager {
 
     @AfterSuite
     public void tearDown(){
-//        wd.quit();
+       wd.quit();
     }
 }

@@ -7,10 +7,4 @@
         </classes>
     </test>
 
-<!--    <test name="sanity">-->
-<!--        <classes>-->
-<!--            <class name="tests.LoginTests"/>-->
-<!--            <class name="tests.RegistrationTests"/>-->
-<!--        </classes>-->
-<!--    </test>-->
 </suite>

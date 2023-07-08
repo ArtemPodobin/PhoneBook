@@ -35,6 +35,8 @@ task mytest(type: Test){
             suites 'src/test/resources/reg.xml'
         } else if(suite.equals('add')){
             suites 'src/test/resources/add.xml'
+        } else if(suite.equals('remove')){
+            suites 'src/test/resources/remove.xml'
         } else {
             suites 'src/test/resources/testng.xml'
         }

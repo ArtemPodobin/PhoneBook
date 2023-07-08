@@ -48,13 +48,14 @@ public class HelperUser extends HelperBase{
                 .until(ExpectedConditions.alertIsPresent());
         if(alert == null) return false;
         wd.switchTo().alert();
-//        System.out.println(alert.getText());
         alert.accept();
         return true;
     }
     public boolean isWrongFormatMessage(){
         Alert alert = new WebDriverWait(wd, 10)
                 .until(ExpectedConditions.alertIsPresent());
-    return alert.getText().contains("Wrong email or password");
+    return alert.getText().contains("Wrong email or password")||
+            alert.getText().contains("Phone not valid")||
+            alert.getText().contains("Email not valid");
     }
 }
