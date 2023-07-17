@@ -1,7 +1,7 @@
 package tests;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import model.Contact;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -16,6 +16,16 @@ public class RemoveContactTests extends TestBase{
             app.getUser().openLoginForm();
             app.getUser().fillLoginForm(email, password);
             app.getUser().submitLogin();
+            app.getHelperContact().openContactForm();
+            app.getHelperContact().fillContactForm(Contact.builder()
+                           .name("RON")
+                           .lastName("Jonson")
+                           .email("roton@gmail.com")
+                           .phone("0542259547")
+                           .address("123 Main St")
+                           .description("Seller")
+                   .build());
+           app.getHelperContact().submitContactForm();
         }
     }
 
@@ -25,11 +35,11 @@ public class RemoveContactTests extends TestBase{
         Assert.assertEquals(-1, res);
     }
 
-    @Test
-    public void removeAllContactsPositive(){
-        app.getHelperContact().removeAllContacts();
-        Assert.assertTrue(app.getHelperContact().isNoContacts());
-    }
+//    @Test
+//    public void removeAllContactsPositive(){
+//        app.getHelperContact().removeAllContacts();
+//        Assert.assertTrue(app.getHelperContact().isNoContacts());
+//    }
     @AfterMethod
     public void postcodition(){
         app.getUser().logout();

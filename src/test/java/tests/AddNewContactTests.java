@@ -1,6 +1,8 @@
 package tests;
 
+import manager.ProviderData;
 import model.Contact;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -22,36 +24,19 @@ public class AddNewContactTests extends TestBase{
     }
 }
 
-@Test(invocationCount = 5)
-    public void addNewContactPositive(){
-    int i = (int)(System.currentTimeMillis()/1000)%3600;
-    Contact contact = Contact.builder()
-            .name("John_" + i)
-            .lastName("Snow")
-            .phone("01234578" + i)
-            .email("john_" + i + "@mail.com")
-            .address("Rehovot")
-            .description("Best friend")
-            .build();
+@Test(dataProvider = "addContactPositiveDto", dataProviderClass = ProviderData.class)
+    public void addNewContactPositive(Contact contact){
 
     logger.info("Phone number is " + contact.getPhone());
+    logger.info("Email is " + contact.getEmail());
     app.getHelperContact().openContactForm();
     app.getHelperContact().fillContactForm(contact);
     app.getHelperContact().submitContactForm();
     app.getHelperContact().pause(3000);
     Assert.assertTrue(app.getHelperContact().isContactCreated(contact));
 }
-    @Test
-    public void addNewContactNegativeWrongPhone(){
-        int i = (int)(System.currentTimeMillis()/1000)%3600;
-        Contact contact = Contact.builder()
-                .name("John_" + i)
-                .lastName("Snow")
-                .phone("0157")
-                .email("john_" + i + "@mail.com")
-                .address("Rehovot")
-                .description("Best friend")
-                .build();
+    @Test(dataProvider = "addContactWrongPhoneDto", dataProviderClass = ProviderData.class)
+    public void addNewContactNegativeWrongPhone(Contact contact){
 
         logger.info("Phone number is " + contact.getPhone());
         app.getHelperContact().openContactForm();
@@ -61,19 +46,10 @@ public class AddNewContactTests extends TestBase{
         Assert.assertTrue(app.getUser().isWrongFormatMessage());
         Assert.assertTrue(app.getUser().isAlertPresent());
     }
-    @Test
-    public void addNewContactNegativeWrongEmail(){
-        int i = (int)(System.currentTimeMillis()/1000)%3600;
-        Contact contact = Contact.builder()
-                .name("John_" + i)
-                .lastName("Snow")
-                .phone("0123457" + i)
-                .email("john_" + i + "mail.com")
-                .address("Rehovot")
-                .description("Best friend")
-                .build();
+    @Test(dataProvider = "addContactWrongEmailDto", dataProviderClass = ProviderData.class)
+    public void addNewContactNegativeWrongEmail(Contact contact){
 
-        logger.info("Phone number is " + contact.getPhone());
+        logger.info("Email is " + contact.getEmail());
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
         app.getHelperContact().submitContactForm();

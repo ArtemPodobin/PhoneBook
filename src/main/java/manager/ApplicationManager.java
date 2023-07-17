@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
 
     Logger logger = LoggerFactory.getLogger(ApplicationManager.class);
-//    WebDriver wd;
+
     EventFiringWebDriver wd;
     HelperUser user;
     HelperContact helperContact;
@@ -39,7 +39,6 @@ public class ApplicationManager {
 
         if(browser.equals(BrowserType.CHROME)){
             wd = new EventFiringWebDriver(new ChromeDriver());
-            logger.info("Tests start on Chrome");
         } else if (browser.equals(BrowserType.FIREFOX)) {
             wd = new EventFiringWebDriver(new FirefoxDriver());
             logger.info("Tests start on FireFox");

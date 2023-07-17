@@ -24,16 +24,15 @@ public class TestBase {
             System.getProperty("browser", BrowserType.CHROME)
     );
 
-//    WebDriver wd;
-//
+
     @BeforeSuite
     public void setUp(){
         app.init();
     }
-//
+
     @AfterSuite
     public void stop(){
-//        app.tearDown();
+      app.tearDown();
     }
 
     @BeforeMethod

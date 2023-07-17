@@ -26,6 +26,9 @@ dependencies {
 
 test {
     useTestNG()
+    if(project.hasProperty('browser')){
+        systemProperty 'browser', "$browser"
+    }
 }
 
 task mytest(type: Test){
